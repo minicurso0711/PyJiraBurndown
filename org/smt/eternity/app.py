@@ -57,14 +57,9 @@ if __name__ == '__main__':
         # Generate Bundown Graphs
         prefix_burndown_title = "{} - {} - ".format(project.name, sprint.name)
         prefix_filename = './images/#/#'.replace('#', sprint.name.replace(' ','').lower())
-        phelper.generate_burndown_graph_file(general_graph_data, prefix_burndown_title + 'General',
-                                             prefix_filename + '_general')
-        phelper.generate_burndown_graph_file(test_graph_data, prefix_burndown_title + 'Test',
-                                             prefix_filename + '_test')
-        phelper.generate_burndown_graph_file(front_graph_data, prefix_burndown_title + 'FrontEnd',
-                                             prefix_filename + '_frontend')
-        phelper.generate_burndown_graph_file(back_graph_data, prefix_burndown_title + 'BackEnd',
-                                             prefix_filename + '_backend')
+        datas = [general_graph_data, back_graph_data, front_graph_data, test_graph_data]
+        titles = [prefix_burndown_title + t for t in ['General', 'Test', 'FrontEnd', 'BackEnd']]
+        phelper.generate_burndown_graph_file(datas, titles, prefix_filename)
     except Exception as e:
         print('An error occurring during the process...')
         print(e)
